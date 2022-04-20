@@ -1,0 +1,16 @@
+C:\Users\Bardo\Documents\Code\GameOf24\bin\Release\net5.0\GameOf24.exe
+C:\Users\Bardo\Documents\Code\GameOf24\bin\Release\net5.0\GameOf24.deps.json
+C:\Users\Bardo\Documents\Code\GameOf24\bin\Release\net5.0\GameOf24.runtimeconfig.json
+C:\Users\Bardo\Documents\Code\GameOf24\bin\Release\net5.0\GameOf24.runtimeconfig.dev.json
+C:\Users\Bardo\Documents\Code\GameOf24\bin\Release\net5.0\GameOf24.dll
+C:\Users\Bardo\Documents\Code\GameOf24\bin\Release\net5.0\ref\GameOf24.dll
+C:\Users\Bardo\Documents\Code\GameOf24\bin\Release\net5.0\GameOf24.pdb
+C:\Users\Bardo\Documents\Code\GameOf24\obj\Release\net5.0\GameOf24.csproj.AssemblyReference.cache
+C:\Users\Bardo\Documents\Code\GameOf24\obj\Release\net5.0\GameOf24.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Bardo\Documents\Code\GameOf24\obj\Release\net5.0\GameOf24.AssemblyInfoInputs.cache
+C:\Users\Bardo\Documents\Code\GameOf24\obj\Release\net5.0\GameOf24.AssemblyInfo.cs
+C:\Users\Bardo\Documents\Code\GameOf24\obj\Release\net5.0\GameOf24.csproj.CoreCompileInputs.cache
+C:\Users\Bardo\Documents\Code\GameOf24\obj\Release\net5.0\GameOf24.dll
+C:\Users\Bardo\Documents\Code\GameOf24\obj\Release\net5.0\ref\GameOf24.dll
+C:\Users\Bardo\Documents\Code\GameOf24\obj\Release\net5.0\GameOf24.pdb
+C:\Users\Bardo\Documents\Code\GameOf24\obj\Release\net5.0\GameOf24.genruntimeconfig.cache

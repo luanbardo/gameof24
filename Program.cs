@@ -13,6 +13,10 @@ namespace GameOf24
             }
         }
 
+        /// <summary>
+        /// Main game loop
+        /// </summary>
+        /// <param name="keepRunning">Should the application run the loop again?</param>
         private static void Loop(out bool keepRunning)
         {
             //Get goal from user
@@ -25,11 +29,11 @@ namespace GameOf24
             input = Console.ReadLine();
             int[] splitInput = Core.SplitInput(input);
 
-            //Trying all operations and all permutations
-            Core.TryOperations(splitInput, goal);
+            //Trying all operations in all permutations
+            Core.TryOperationsInEveryPermutation(splitInput, goal);
             
             //Keep playing?
-            Console.WriteLine(" \nTry with other numbers? y/n ");
+            Console.WriteLine(" \nTry other numbers? y/n ");
             input = Console.ReadLine();
             
             keepRunning = input.Equals("y");

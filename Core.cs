@@ -9,11 +9,11 @@ namespace GameOf24
         /// <summary>
         /// Splits the string at every comma
         /// </summary>
-        /// <param name="str"></param>
-        /// <returns></returns>
-        internal static int[] SplitInput(string str)
+        /// <param name="input"></param>
+        /// <returns>Array containing input numbers separated by commas</returns>
+        internal static int[] SplitInput(string input)
         {
-            string[] splits = str.Split(',');
+            string[] splits = input.Split(',');
 
             List<int> results = new List<int>();
 
@@ -29,7 +29,7 @@ namespace GameOf24
         }
 
         /// <summary>
-        /// Prints a solution to the console
+        /// Stores function in functionList for later processing
         /// </summary>
         /// <param name="input"></param>
         /// <param name="prefix"></param>
@@ -46,12 +46,11 @@ namespace GameOf24
         }
 
         /// <summary>
-        /// Try every written operations for every possible sorting of input
-        /// When a solution is found, its written to the console
+        /// Try every written operations for every possible arrangement of the input array
         /// </summary>
         /// <param name="input">Array with the 4 numbers to be tried</param>
         /// <param name="goal">Number that the 4 arrays numbers must reach</param>
-        internal static void TryOperations(int[] input, int goal)
+        internal static void TryOperationsInEveryPermutation(int[] input, int goal)
         {
             List<string> solutions = new();
             //Trying all operations for every possible randomization of the input list
@@ -75,160 +74,159 @@ namespace GameOf24
         }
 
         /// <summary>
-        /// Try multiple math functions and store the function if sucessful
+        /// Try multiple math functions and store the functions in solutions list when successful
         /// </summary>
-        /// <param name="toReach"></param>
+        /// <param name="goal"></param>
         /// <param name="input"></param>
-        /// <param name="foundSolution"></param>
-        /// <returns></returns>
-        private static void TryAllOperations(int toReach, int[] input, List<string> solutions)
+        /// <param name="solutions"></param>
+        private static void TryAllOperations(int goal, int[] input, List<string> solutions)
         {
-            if (input[0] + input[1] + input[2] + input[3] == toReach)
+            if (input[0] + input[1] + input[2] + input[3] == goal)
             {
                 StoreFunction(input, "", " + ", " + ", " + ", "", solutions);
             }
 
-            if (input[0] * input[1] * input[2] * input[3] == toReach)
+            if (input[0] * input[1] * input[2] * input[3] == goal)
             {
                 StoreFunction(input, "", " * ", " * ", " * ", "", solutions);
             }
 
-            if (input[0] + input[1] + input[2] - input[3] == toReach)
+            if (input[0] + input[1] + input[2] - input[3] == goal)
             {
                 StoreFunction(input, "", " + ", " + ", " - ", "", solutions);
             }
 
-            if (input[0] * input[1] + input[2] + input[3] == toReach)
+            if (input[0] * input[1] + input[2] + input[3] == goal)
             {
                 StoreFunction(input, "", " * ", " + ", " + ", "", solutions);
             }
 
-            if (input[0] * (input[1] + input[2]) + input[3] == toReach)
+            if (input[0] * (input[1] + input[2]) + input[3] == goal)
             {
                 StoreFunction(input, "", " * ( ", " + ", " ) + ", "", solutions);
             }
 
-            if (input[0] * (input[1] + input[2] + input[3]) == toReach)
+            if (input[0] * (input[1] + input[2] + input[3]) == goal)
             {
                 StoreFunction(input, "", " * ( ", " + ", " + ", " )", solutions);
             }
 
-            if (input[0] * input[1] * input[2] + input[3] == toReach)
+            if (input[0] * input[1] * input[2] + input[3] == goal)
             {
                 StoreFunction(input, "( ", " * ", " * ", " ) + ", "", solutions);
             }
 
-            if (input[0] * input[1] * (input[2] + input[3]) == toReach)
+            if (input[0] * input[1] * (input[2] + input[3]) == goal)
             {
                 StoreFunction(input, "( ", " * ", " * ( ", " + ", " )", solutions);
             }
 
-            if (input[0] * input[1] + input[2] * input[3] == toReach)
+            if (input[0] * input[1] + input[2] * input[3] == goal)
             {
                 StoreFunction(input, "( ", " * ", " ) + ( ", " * ", " )", solutions);
             }
 
-            if (input[0] * input[1] * input[2] - input[3] == toReach)
+            if (input[0] * input[1] * input[2] - input[3] == goal)
             {
                 StoreFunction(input, "( ", " * ", " * ", " ) - ", "", solutions);
             }
 
-            if (input[0] * input[1] * (input[2] - input[3]) == toReach)
+            if (input[0] * input[1] * (input[2] - input[3]) == goal)
             {
                 StoreFunction(input, "( ", " * ", " * ( ", " - ", " )", solutions);
             }
 
-            if (input[0] * input[1] - input[2] * input[3] == toReach)
+            if (input[0] * input[1] - input[2] * input[3] == goal)
             {
                 StoreFunction(input, "( ", " * ", " ) - ( ", " * ", " )", solutions);
             }
 
-            if (input[0] * input[1] + input[2] - input[3] == toReach)
+            if (input[0] * input[1] + input[2] - input[3] == goal)
             {
                 StoreFunction(input, "", " * ", " + ", " - ", "", solutions);
             }
 
-            if (input[0] * (input[1] + input[2]) - input[3] == toReach)
+            if (input[0] * (input[1] + input[2]) - input[3] == goal)
             {
                 StoreFunction(input, "", " * ( ", " + ", " ) - ", "", solutions);
             }
 
-            if (input[0] * (input[1] - input[2]) + input[3] == toReach)
+            if (input[0] * (input[1] - input[2]) + input[3] == goal)
             {
                 StoreFunction(input, "", " * ( ", " - ", " ) + ", "", solutions);
             }
 
-            if (input[0] * (input[1] + input[2] - input[3]) == toReach)
+            if (input[0] * (input[1] + input[2] - input[3]) == goal)
             {
                 StoreFunction(input, "", " * ( ", " + ", " - ", " )", solutions);
             }
 
-            if (input[0] * input[1] - (input[2] + input[3]) == toReach)
+            if (input[0] * input[1] - (input[2] + input[3]) == goal)
             {
                 StoreFunction(input, "", " * ", " - ( ", " + ", " )", solutions);
             }
 
-            if (input[0] * input[1] == (toReach - input[3]) * input[2])
+            if (input[0] * input[1] == (goal - input[3]) * input[2])
             {
                 StoreFunction(input, "( ", " * ", " / ", " ) + ", "", solutions);
             }
 
-            if (input[0] * (input[1] + input[2] / input[3]) == toReach)
+            if (input[0] * (input[1] + input[2] / input[3]) == goal)
             {
                 StoreFunction(input, "", " * (", " + ", " / ", ")", solutions);
             }
 
-            if (input[0] * input[1] + input[2] == toReach * input[3])
+            if (input[0] * input[1] + input[2] == goal * input[3])
             {
                 StoreFunction(input, "(( ", " * ", " ) + ", " ) / ", "", solutions);
             }
 
-            if ((input[0] + input[1]) * input[2] == toReach * input[3])
+            if ((input[0] + input[1]) * input[2] == goal * input[3])
             {
                 StoreFunction(input, "(( ", " + ", " ) * ", " ) / ", "", solutions);
             }
 
-            if (input[0] * input[1] == toReach * (input[2] + input[3]))
+            if (input[0] * input[1] == goal * (input[2] + input[3]))
             {
                 StoreFunction(input, "( ", " * ", " ) / ( ", " + ", " )", solutions);
             }
 
-            if (input[0] * input[1] == (toReach + input[3]) * input[2])
+            if (input[0] * input[1] == (goal + input[3]) * input[2])
             {
                 StoreFunction(input, "( ", " * ", " / ", " ) - ", "", solutions);
             }
 
-            if (input[0] * input[1] - input[2] == toReach * input[3])
+            if (input[0] * input[1] - input[2] == goal * input[3])
             {
                 StoreFunction(input, "(( ", " * ", " ) - ", " ) / ", "", solutions);
             }
 
-            if ((input[0] - input[1]) * input[2] == toReach * input[3])
+            if ((input[0] - input[1]) * input[2] == goal * input[3])
             {
                 StoreFunction(input, "(( ", " - ", " ) * ", " ) / ", "", solutions);
             }
 
-            if (input[0] * input[1] == toReach * (input[2] - input[3]))
+            if (input[0] * input[1] == goal * (input[2] - input[3]))
             {
                 StoreFunction(input, "( ", " * ", " ) / ( ", " - ", " )", solutions);
             }
 
-            if (input[0] * input[1] * input[2] == toReach * input[3])
+            if (input[0] * input[1] * input[2] == goal * input[3])
             {
                 StoreFunction(input, "", " * ", " * ", " / ", "", solutions);
             }
 
-            if (input[0] * input[1] == toReach * input[2] * input[3])
+            if (input[0] * input[1] == goal * input[2] * input[3])
             {
                 StoreFunction(input, "", " * ", " / ( ", " * ", " )", solutions);
             }
 
-            if (input[0] * input[3] == toReach * (input[1] * input[3] - input[2]))
+            if (input[0] * input[3] == goal * (input[1] * input[3] - input[2]))
             {
                 StoreFunction(input, "", " / ( ", " - ", " / ", " )", solutions);
             }
 
-            if (input[0] * input[1] == toReach * input[2] * input[3])
+            if (input[0] * input[1] == goal * input[2] * input[3])
             {
                 StoreFunction(input, "( ", " * ", " / ", " ) / ", "", solutions);
             }
@@ -239,12 +237,11 @@ namespace GameOf24
         /// Source: https://stackoverflow.com/questions/11208446/generating-permutations-of-a-set-most-efficiently
         /// </summary>
         /// <param name="items">Items to permute in each possible ways</param>
-        /// <param name="funcExecuteAndTellIfShouldStop"></param>
-        /// <returns>Return true if cancelled</returns>
-        public static void ForEachPermutation<T>(this T[] items, Action<T[]> funcExecuteAndTellIfShouldStop)
+        /// <param name="callback">Method to be called for each permutation</param>
+        private static void ForEachPermutation<T>(this T[] items, Action<T[]> callback)
         {
             // Swap 2 elements of same type
-            static void Swap<T>(ref T a, ref T b)
+            void Swap<T>(ref T a, ref T b)
             {
                 T temp = a;
                 a = b;
@@ -255,13 +252,13 @@ namespace GameOf24
 
             if (countOfItem <= 1)
             {
-                funcExecuteAndTellIfShouldStop(items);
+                callback(items);
             }
 
             int[] indexes = new int[countOfItem];
 
 
-            funcExecuteAndTellIfShouldStop(items);
+            callback(items);
 
 
             for (int i = 1; i < countOfItem;)
@@ -278,7 +275,7 @@ namespace GameOf24
                         Swap(ref items[i], ref items[0]);
                     }
 
-                    funcExecuteAndTellIfShouldStop(items);
+                    callback(items);
                     indexes[i]++;
                     i = 1;
                 }

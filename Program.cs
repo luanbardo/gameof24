@@ -26,23 +26,26 @@ namespace GameOf24
             string input = Console.ReadLine();
             int goal = Int32.Parse(input);
 
-            //Get input from user
+            //Get numbers from user
             Console.WriteLine(" \nPlease input exactly 4 numbers, each separated by a comma (Ex:13,1,4,20)");
             input = Console.ReadLine();
             int[] splitInput = Core.SplitInput(input);
             
             //Trying all operations in all permutations
             List<string> solutions = new();
-            Core.TryOperationsInEveryPermutation(splitInput, goal, solutions);
+            bool foundSolution = Core.TryOperationsInEveryPermutation(splitInput, goal, solutions);
             
-            //Solution not possible
-            if (solutions.Count == 0)
+            if (!foundSolution)
             {
                 Console.WriteLine("Could not find solution :(");
             }
             else
             {
-                PrintSolutions(solutions);
+                //Remove duplicates
+                List<string> uniqueSolutions = solutions.Distinct().ToList();
+                Console.WriteLine("\nFound {0} possible solution(s):" , uniqueSolutions.Count);
+                //Print every found solution
+                uniqueSolutions.ForEach(s => Console.WriteLine(s + "\n"));
             }
             
             //Keep playing?
@@ -53,17 +56,6 @@ namespace GameOf24
             
             //Clean slate
             Console.Clear();
-        }
-
-        private static void PrintSolutions(List<string> solutions)
-        {
-            //Removing Duplicates
-            solutions = solutions.Distinct().ToList();
-
-            Console.WriteLine("\nPossible Solutions: ");
-
-            //Print every found solution
-            solutions.ForEach(s => Console.WriteLine(s + "\n"));
         }
     }
 }

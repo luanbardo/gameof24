@@ -42,28 +42,12 @@ namespace GameOf24
         /// </summary>
         /// <param name="input">Array with the 4 numbers to be used on functions</param>
         /// <param name="goal">Number that the 4 arrays numbers must reach</param>
-        internal static void TryOperationsInEveryPermutation(int[] input, int goal)
+        /// <param name="solutions">Fresh list to store found solutions</param>
+        internal static bool TryOperationsInEveryPermutation(int[] input, int goal, List<string> solutions)
         {
-            List<string> solutions = new();
-            
             //Calling TryAllOperations for each permutation of input
             input.ForEachPermutation(inputPermut => TryAllOperations(goal, inputPermut, solutions));
-
-            //Solution not possible
-            if (solutions.Count == 0)
-            {
-                Console.WriteLine("Could not find solution :(");
-            }
-            else
-            {
-                //Removing Duplicates
-                solutions = solutions.Distinct().ToList();
-                
-                Console.WriteLine("\nPossible Solutions: ");
-                
-                //Print every found solution
-                solutions.ForEach(s => Console.WriteLine(s + "\n"));
-            }
+            return solutions.Count >= 1;
         }
         
         /// <summary>
@@ -183,7 +167,52 @@ namespace GameOf24
             {
                 StoreFunction(input, "( ", " * ", " ) - ( ", " * ", " )", solutions);
             }
+            
+            if ((input[0] + input[1]) * (input[2] - input[3]) == goal)
+            {
+                StoreFunction(input, "( ", " + ", " ) * ( ", " - ", " )", solutions);
+            }
 
+            if (input[0] / (input[1] + input[2] + input[3]) == goal)
+            {
+                StoreFunction(input, "", " / (", " + ", " + ", ")", solutions);
+            }
+
+            if (input[0] * input[1] - input[2] / input[3] == goal)
+            {
+                StoreFunction(input, "", " * ", " - ", " / ", "", solutions);
+            }
+
+            if ((input[0] + input[1] / input[2]) * input[3] == goal)
+            {
+                StoreFunction(input, "(", " + ", " / ", ") * ", "", solutions);
+            }
+
+            if ((input[0] - input[1]) * input[2] - input[3] == goal)
+            {
+                StoreFunction(input, "( ", " - ", ") * ", " - ", "", solutions);
+            }
+            
+            if ((input[0] + input[1]) * (input[2] + input[3]) == goal)
+            {
+                StoreFunction(input, "( ", " + ", " ) * ( ", " + ", " )", solutions);
+            }
+            
+            if ((input[0] - input[1]) * (input[2] - input[3]) == goal)
+            {
+                StoreFunction(input, "( ", " - ", " ) * ( ", " - ", " )", solutions);
+            }
+
+            if (input[0] * (input[1] * input[2] + input[3]) == goal)
+            {
+                StoreFunction(input, "", " * (", " * ", " + ", " )", solutions);
+            }
+            
+            if (input[0] * (input[1] * input[2] - input[3]) == goal)
+            {
+                StoreFunction(input, "", " * (", " * ", " - ", " )", solutions);
+            }
+            
             if (input[0] * input[1] + input[2] - input[3] == goal)
             {
                 StoreFunction(input, "", " * ", " + ", " - ", "", solutions);
@@ -272,6 +301,15 @@ namespace GameOf24
             if (input[0] * input[1] == goal * input[2] * input[3])
             {
                 StoreFunction(input, "( ", " * ", " / ", " ) / ", "", solutions);
+            }
+            
+            //Must not destroy the world order
+            if (input[1] - input[2] + input[3] != 0)
+            {
+                if (input[0] / (input[1] - input[2] + input[3]) == goal)
+                {
+                    StoreFunction(input, "", " / (", " - ", " + ", ")", solutions);
+                }
             }
         }
     }

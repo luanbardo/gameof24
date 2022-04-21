@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace GameOf24
 {
@@ -28,9 +30,20 @@ namespace GameOf24
             Console.WriteLine(" \nPlease input exactly 4 numbers, each separated by a comma (Ex:13,1,4,20)");
             input = Console.ReadLine();
             int[] splitInput = Core.SplitInput(input);
-
+            
             //Trying all operations in all permutations
-            Core.TryOperationsInEveryPermutation(splitInput, goal);
+            List<string> solutions = new();
+            Core.TryOperationsInEveryPermutation(splitInput, goal, solutions);
+            
+            //Solution not possible
+            if (solutions.Count == 0)
+            {
+                Console.WriteLine("Could not find solution :(");
+            }
+            else
+            {
+                PrintSolutions(solutions);
+            }
             
             //Keep playing?
             Console.WriteLine(" \nTry other numbers? y/n ");
@@ -40,6 +53,17 @@ namespace GameOf24
             
             //Clean slate
             Console.Clear();
+        }
+
+        private static void PrintSolutions(List<string> solutions)
+        {
+            //Removing Duplicates
+            solutions = solutions.Distinct().ToList();
+
+            Console.WriteLine("\nPossible Solutions: ");
+
+            //Print every found solution
+            solutions.ForEach(s => Console.WriteLine(s + "\n"));
         }
     }
 }
